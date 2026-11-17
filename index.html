@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>명경호 | 포트폴리오</title>
+<meta name="description" content="레저해양스포츠학과 명경호의 개인 포트폴리오">
+<style>
+  :root{
+    --bg:#f5f9fc;
+    --surface:#ffffff;
+    --ink:#0b1f33;
+    --muted:#5a6b7b;
+    --line:#dbe6ef;
+    --primary:#0a66c2;
+    --primary-2:#00b4d8;
+    --accent:#ff6b4a;
+    --hero-1:#06223d;
+    --hero-2:#0a4a7a;
+    --radius:18px;
+    --shadow:0 10px 30px rgba(10,50,90,.10);
+    --nav-h:68px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#08121d;
+      --surface:#0f1d2c;
+      --ink:#e8f1f9;
+      --muted:#9bb0c3;
+      --line:#1c3147;
+      --primary:#4aa3ff;
+      --primary-2:#2ad1f0;
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+    }
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:var(--nav-h)}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic","Segoe UI",sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+  .container{width:min(1080px,100% - 40px);margin-inline:auto}
+
+  /* NAV */
+  header{
+    position:fixed;inset:0 0 auto 0;height:var(--nav-h);z-index:50;
+    background:rgba(6,34,61,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  .nav{height:100%;display:flex;align-items:center;justify-content:space-between}
+  .logo{font-weight:800;font-size:1.15rem;color:#fff;letter-spacing:-.02em}
+  .logo span{color:var(--primary-2)}
+  nav ul{display:flex;gap:6px;list-style:none}
+  nav a{
+    display:block;padding:8px 14px;border-radius:999px;color:#cfe2f3;font-size:.95rem;font-weight:500;
+    transition:.2s;
+  }
+  nav a:hover{color:#fff;background:rgba(255,255,255,.1)}
+  nav a.active{color:#06223d;background:var(--primary-2);font-weight:700}
+  .burger{
+    display:none;width:44px;height:44px;border:0;background:transparent;cursor:pointer;
+    flex-direction:column;justify-content:center;align-items:center;gap:6px;
+  }
+  .burger span{width:24px;height:2px;background:#fff;border-radius:2px;transition:.3s}
+  .burger.open span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+  .burger.open span:nth-child(2){opacity:0}
+  .burger.open span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+
+  /* HERO */
+  #home{
+    min-height:100svh;display:flex;align-items:center;position:relative;overflow:hidden;
+    background:linear-gradient(160deg,var(--hero-1),var(--hero-2) 70%,#0b7fb0);
+    color:#fff;padding:calc(var(--nav-h) + 40px) 0 90px;
+  }
+  .wave{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:90px;display:block}
+  .wave path{fill:var(--bg)}
+  .orb{position:absolute;border-radius:50%;filter:blur(60px);opacity:.45;pointer-events:none}
+  .orb.a{width:340px;height:340px;background:#00b4d8;top:-80px;right:-60px}
+  .orb.b{width:260px;height:260px;background:#ff6b4a;bottom:60px;left:-80px;opacity:.28}
+  .hero-inner{position:relative;z-index:1}
+  .tag{
+    display:inline-block;padding:6px 14px;border-radius:999px;font-size:.85rem;font-weight:600;
+    background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#bfeaf7;margin-bottom:22px;
+  }
+  h1{font-size:clamp(2.4rem,7vw,4.4rem);line-height:1.15;letter-spacing:-.03em;font-weight:800}
+  h1 em{font-style:normal;background:linear-gradient(90deg,#5ee0ff,#9ff3d0);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero-sub{margin-top:20px;font-size:clamp(1rem,2.4vw,1.25rem);color:#cfe2f3;max-width:560px}
+  .hero-cta{margin-top:34px;display:flex;flex-wrap:wrap;gap:12px}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;padding:13px 24px;border-radius:999px;font-weight:700;font-size:.98rem;
+    border:1px solid transparent;cursor:pointer;transition:.2s;font-family:inherit;
+  }
+  .btn.primary{background:var(--primary-2);color:#06223d}
+  .btn.primary:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,180,216,.4)}
+  .btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.4)}
+  .btn.ghost:hover{background:rgba(255,255,255,.12)}
+
+  /* SECTIONS */
+  section{padding:96px 0}
+  #home{padding-top:calc(var(--nav-h) + 40px);padding-bottom:90px}
+  .eyebrow{color:var(--primary);font-weight:800;font-size:.85rem;letter-spacing:.14em;text-transform:uppercase}
+  h2{font-size:clamp(1.7rem,4vw,2.4rem);letter-spacing:-.02em;margin:8px 0 14px;line-height:1.3}
+  .lead{color:var(--muted);max-width:620px;margin-bottom:40px}
+
+  .card{
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+    padding:28px;box-shadow:var(--shadow);
+  }
+  .grid{display:grid;gap:20px}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  .g3{grid-template-columns:repeat(3,1fr)}
+
+  /* ABOUT */
+  .about-wrap{display:grid;grid-template-columns:320px 1fr;gap:28px;align-items:start}
+  .profile-card{text-align:center}
+  .avatar{
+    width:120px;height:120px;border-radius:50%;margin:0 auto 18px;display:grid;place-items:center;
+    font-size:2.6rem;font-weight:800;color:#fff;
+    background:linear-gradient(135deg,var(--primary),var(--primary-2));
+    box-shadow:0 10px 24px rgba(10,102,194,.35);
+  }
+  .profile-card h3{font-size:1.4rem}
+  .profile-card p{color:var(--muted);font-size:.95rem}
+  .facts{list-style:none;margin-top:20px;text-align:left}
+  .facts li{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-top:1px solid var(--line);font-size:.95rem}
+  .facts li span:first-child{color:var(--muted)}
+  .facts li span:last-child{font-weight:600;text-align:right}
+  .about-text p{margin-bottom:14px}
+  .about-text p:last-child{margin-bottom:0}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+  .chip{padding:7px 14px;border-radius:999px;background:rgba(10,102,194,.1);color:var(--primary);font-size:.88rem;font-weight:600}
+
+  /* SKILLS */
+  .icon{
+    width:48px;height:48px;border-radius:14px;display:grid;place-items:center;font-size:1.4rem;margin-bottom:16px;
+    background:linear-gradient(135deg,rgba(10,102,194,.14),rgba(0,180,216,.18));
+  }
+  .card h3{font-size:1.15rem;margin-bottom:8px}
+  .card p{color:var(--muted);font-size:.96rem}
+
+  /* PROJECTS */
+  .empty{
+    text-align:center;padding:48px 28px;border:2px dashed var(--line);border-radius:var(--radius);
+    background:var(--surface);
+  }
+  .empty .big{font-size:2.4rem;margin-bottom:10px}
+  .empty h3{margin-bottom:8px}
+  .empty p{color:var(--muted);max-width:480px;margin:0 auto}
+  .slot{opacity:.75;border-style:dashed;box-shadow:none}
+  .slot .badge{
+    display:inline-block;font-size:.75rem;font-weight:700;padding:4px 10px;border-radius:999px;
+    background:rgba(255,107,74,.14);color:var(--accent);margin-bottom:12px;
+  }
+
+  /* GOALS */
+  .timeline{position:relative;padding-left:30px}
+  .timeline::before{content:"";position:absolute;left:9px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--primary-2),var(--line))}
+  .step{position:relative;margin-bottom:22px}
+  .step::before{
+    content:"";position:absolute;left:-30px;top:26px;width:20px;height:20px;border-radius:50%;
+    background:var(--surface);border:4px solid var(--primary-2);
+  }
+  .step small{color:var(--primary);font-weight:700}
+  .quote{
+    margin-top:36px;padding:36px 28px;border-radius:var(--radius);text-align:center;color:#fff;
+    background:linear-gradient(135deg,var(--hero-1),var(--hero-2));
+  }
+  .quote strong{display:block;font-size:clamp(1.4rem,4vw,2rem);letter-spacing:-.02em}
+  .quote span{color:#bcd7ee;font-size:.95rem}
+
+  footer{padding:32px 0;text-align:center;color:var(--muted);font-size:.9rem;border-top:1px solid var(--line)}
+
+  /* reveal animation */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.show{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .reveal{opacity:1;transform:none;transition:none}
+  }
+
+  /* RESPONSIVE */
+  @media (max-width:860px){
+    .about-wrap{grid-template-columns:1fr}
+    .g3{grid-template-columns:1fr}
+    .g2{grid-template-columns:1fr}
+  }
+  @media (max-width:720px){
+    .burger{display:flex}
+    nav{
+      position:fixed;top:var(--nav-h);left:0;right:0;background:rgba(6,34,61,.97);
+      max-height:0;overflow:hidden;transition:max-height .35s ease;
+    }
+    nav.open{max-height:360px;border-bottom:1px solid rgba(255,255,255,.1)}
+    nav ul{flex-direction:column;padding:12px 20px 20px;gap:4px}
+    nav a{padding:14px 16px;border-radius:12px}
+    section{padding:72px 0}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav">
+    <a href="#home" class="logo">명경호<span>.</span></a>
+    <button class="burger" id="burger" aria-label="메뉴 열기" aria-expanded="false" aria-controls="menu">
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="menu" aria-label="주 메뉴">
+      <ul>
+        <li><a href="#home" class="active">홈</a></li>
+        <li><a href="#about">자기소개</a></li>
+        <li><a href="#skills">역량</a></li>
+        <li><a href="#projects">프로젝트</a></li>
+        <li><a href="#goals">진로 목표</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- HOME -->
+  <section id="home">
+    <div class="orb a"></div><div class="orb b"></div>
+    <div class="container hero-inner">
+      <span class="tag">레저해양스포츠학과</span>
+      <h1>안녕하세요,<br><em>명경호</em>입니다.</h1>
+      <p class="hero-sub">스포츠에 관심을 가지고, 보고 배운 것들을 차곡차곡 쌓아가고 있습니다. 목표는 열심히 사는 것입니다.</p>
+      <div class="hero-cta">
+        <a href="#about" class="btn primary">자기소개 보기 →</a>
+        <a href="#goals" class="btn ghost">진로 목표</a>
+      </div>
+    </div>
+    <svg class="wave" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,50 C240,100 480,0 720,40 C960,80 1200,10 1440,50 L1440,90 L0,90 Z"/>
+    </svg>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="reveal">
+        <div class="eyebrow">About</div>
+        <h2>자기소개</h2>
+        <p class="lead">저를 간단히 소개합니다.</p>
+      </div>
+      <div class="about-wrap">
+        <div class="card profile-card reveal">
+          <div class="avatar">명</div>
+          <h3>명경호</h3>
+          <p>레저해양스포츠학과</p>
+          <ul class="facts">
+            <li><span>이름</span><span>명경호</span></li>
+            <li><span>전공</span><span>레저해양스포츠학과</span></li>
+            <li><span>관심 분야</span><span>스포츠</span></li>
+            <li><span>목표</span><span>열심히 살기</span></li>
+          </ul>
+        </div>
+        <div class="card about-text reveal">
+          <p>레저해양스포츠학과에서 공부하고 있는 명경호입니다. 스포츠에 대한 관심을 바탕으로 이 분야를 배우고 있습니다.</p>
+          <p>저의 강점은 보고 배운 것이 많다는 점입니다. 직접 해본 경험은 아직 없지만, 다양한 것을 보고 배우며 쌓아온 지식을 앞으로의 경험으로 이어가고 싶습니다.</p>
+          <p>무엇을 하든 열심히 하는 것을 목표로 삼고 있습니다.</p>
+          <div class="chips">
+            <span class="chip">#스포츠</span>
+            <span class="chip">#레저해양스포츠</span>
+            <span class="chip">#배움</span>
+            <span class="chip">#열심히</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" style="background:var(--surface)">
+    <div class="container">
+      <div class="reveal">
+        <div class="eyebrow">Skills</div>
+        <h2>역량</h2>
+        <p class="lead">지금의 저를 이루는 강점과 앞으로 키워갈 부분입니다.</p>
+      </div>
+      <div class="grid g3">
+        <article class="card reveal">
+          <div class="icon">👀</div>
+          <h3>보고 배우는 힘</h3>
+          <p>많이 보고 배운 것이 저의 가장 큰 강점입니다. 관찰하고 받아들이는 데 자신 있습니다.</p>
+        </article>
+        <article class="card reveal">
+          <div class="icon">🏄</div>
+          <h3>스포츠에 대한 관심</h3>
+          <p>스포츠에 꾸준히 관심을 가지고, 전공인 레저해양스포츠 분야를 배우고 있습니다.</p>
+        </article>
+        <article class="card reveal">
+          <div class="icon">🔥</div>
+          <h3>열심히 하는 태도</h3>
+          <p>무슨 일이든 열심히 하는 것을 삶의 목표로 삼고 있습니다.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+      <div class="reveal">
+        <div class="eyebrow">Projects</div>
+        <h2>프로젝트</h2>
+        <p class="lead">아직 진행한 프로젝트나 활동 경험이 없습니다. 앞으로 경험이 생기면 이곳에 채워가겠습니다.</p>
+      </div>
+      <div class="empty reveal">
+        <div class="big">🌱</div>
+        <h3>첫 경험을 준비하고 있어요</h3>
+        <p>보고 배운 것을 직접 해보는 경험으로 바꾸는 것이 다음 단계입니다.</p>
+      </div>
+      <div class="grid g2" style="margin-top:20px">
+        <article class="card slot reveal">
+          <span class="badge">준비 중</span>
+          <h3>첫 번째 프로젝트</h3>
+          <p>내용이 생기면 이곳에 추가됩니다.</p>
+        </article>
+        <article class="card slot reveal">
+          <span class="badge">준비 중</span>
+          <h3>두 번째 프로젝트</h3>
+          <p>내용이 생기면 이곳에 추가됩니다.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- GOALS -->
+  <section id="goals" style="background:var(--surface)">
+    <div class="container">
+      <div class="reveal">
+        <div class="eyebrow">Goals</div>
+        <h2>진로 목표</h2>
+        <p class="lead">구체적인 진로는 배우면서 더 선명하게 만들어 가려고 합니다.</p>
+      </div>
+      <div class="timeline">
+        <div class="step card reveal">
+          <small>지금</small>
+          <h3>배우고 쌓기</h3>
+          <p>레저해양스포츠학과에서 스포츠에 관해 보고 배우며 기초를 쌓습니다.</p>
+        </div>
+        <div class="step card reveal">
+          <small>다음</small>
+          <h3>직접 경험하기</h3>
+          <p>배운 것을 활동과 경험으로 연결해 나갑니다.</p>
+        </div>
+        <div class="step card reveal">
+          <small>계속</small>
+          <h3>열심히 살기</h3>
+          <p>어떤 길을 가더라도 열심히 하는 태도를 잃지 않겠습니다.</p>
+        </div>
+      </div>
+      <div class="quote reveal">
+        <strong>열심히 사는 사람이 되겠습니다.</strong>
+        <span>— 명경호</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">© <span id="year"></span> 명경호. All rights reserved.</div>
+</footer>
+
+<script>
+(function(){
+  var burger = document.getElementById('burger');
+  var menu = document.getElementById('menu');
+  var links = Array.prototype.slice.call(menu.querySelectorAll('a'));
+
+  function setMenu(open){
+    menu.classList.toggle('open', open);
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  burger.addEventListener('click', function(){ setMenu(!menu.classList.contains('open')); });
+  links.forEach(function(a){ a.addEventListener('click', function(){ setMenu(false); }); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') setMenu(false); });
+
+  // 현재 섹션 메뉴 강조
+  var sections = links.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+  function updateActive(){
+    var y = window.scrollY + window.innerHeight * 0.35;
+    var current = 0;
+    sections.forEach(function(s, i){ if(s && s.offsetTop <= y) current = i; });
+    if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 4) current = sections.length - 1;
+    links.forEach(function(a, i){ a.classList.toggle('active', i === current); });
+  }
+  window.addEventListener('scroll', updateActive, {passive:true});
+  window.addEventListener('resize', updateActive);
+  updateActive();
+
+  // 스크롤 등장 효과
+  var items = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ en.target.classList.add('show'); io.unobserve(en.target); }
+      });
+    }, {threshold:0.12});
+    items.forEach(function(el){ io.observe(el); });
+  } else {
+    items.forEach(function(el){ el.classList.add('show'); });
+  }
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
